@@ -1,0 +1,1 @@
+abbr 'dc' 'cd'
