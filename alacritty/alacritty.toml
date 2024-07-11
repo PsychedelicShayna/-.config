@@ -1,0 +1,30 @@
+import = [ "/usr/lib/node_modules/alacritty-themes/themes/Hund.toml" ]
+live_config_reload = true
+
+[font]
+size = 18
+builtin_box_drawing = true
+
+  [font.bold]
+  family = "Caskaydia Cove Nerd Font Mono"
+  style = "Bold"
+
+  [font.italic]
+  family = "Caskaydia Cove Nerd Font Mono"
+  style = "Italic"
+
+  [font.normal]
+  family = "Caskaydia Cove Nerd Font Mono"
+  style = "SemiLight"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+
+[scrolling]
+history = 50_000
+multiplier = 3
+
+[window]
+dynamic_padding = false
+opacity = 0.95
