@@ -1,4 +1,6 @@
-import = [ "/usr/lib/node_modules/alacritty-themes/themes/Hund.toml" ]
+import = [
+  "/usr/lib/node_modules/alacritty-themes/themes/Catppuccin-Mocha.toml"
+]
 live_config_reload = true
 
 [font]
@@ -6,15 +8,15 @@ size = 18
 builtin_box_drawing = true
 
   [font.bold]
-  family = "Caskaydia Cove Nerd Font Mono"
+  family = "Fira Code Nerd Font Mono"
   style = "Bold"
 
   [font.italic]
-  family = "Caskaydia Cove Nerd Font Mono"
+  family = "Fira Code Nerd Font Mono"
   style = "Italic"
 
   [font.normal]
-  family = "Caskaydia Cove Nerd Font Mono"
+  family = "Fira Code Nerd Font Mono"
   style = "SemiLight"
 
 [[keyboard.bindings]]
