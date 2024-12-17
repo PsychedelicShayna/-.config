@@ -1,5 +1,5 @@
 import = [
-  "/usr/lib/node_modules/alacritty-themes/themes/Catppuccin-Mocha.toml"
+  "/usr/lib/node_modules/alacritty-themes/themes/User 77 - Mashup colors.toml"
 ]
 live_config_reload = true
 
@@ -9,6 +9,7 @@ builtin_box_drawing = true
 
   [font.bold]
   family = "Fira Code Nerd Font Mono"
+  # family = "FantasqueSansM Nerd Font"
   style = "Bold"
 
   [font.italic]

@@ -4,7 +4,7 @@ zoxide init fish | source
 
 function cd
 	__zoxide_z $argv; 
-	and ls
+	and lsd
 end
 
 

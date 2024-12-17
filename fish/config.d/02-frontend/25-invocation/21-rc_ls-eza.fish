@@ -1,23 +1,17 @@
+alias l /usr/bin/ls
+alias ll=lsd
+alias lstree 'erd --hidden -l -H -I --follow --nlink --layout inverted --dir-order last --ino --group --octal --sort create --time mod --threads 8 --one-file-system --time-format iso --sort mod -y inverted'
+alias lse erd
 
 if command -v 'eza' > /dev/null
   alias ls=eza
-
-  function lsc
-    sh -c "ls $argv"
-  end
 else if command -v 'exa' > /dev/null
   alias ls=exa
-
-  function lsc
-    sh -c "ls $argv"
-  end
-
   echo "Consider installing eza a continued fork of exa; exa is no longer maintained."
 end
 
-alias ll=lsd 
 
-function lss
+function lsda
   set -f command "lsd"
   set -f passarg 3
 
@@ -66,7 +60,6 @@ function lss
 end
 
 # lsd --blocks name,size,user,permission,group,date --group-directories-first --git --human-readable --timesort --reverse --all --tree --depth 1
-
 # alias ls="ls --color=auto" alias la="ls -a" alias ll="ls -alFh" alias l="ls" alias l.="ls -A | egrep '^\.'"
 # alias listdir="ls -d */ > list"
 
