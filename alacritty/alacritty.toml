@@ -1,33 +1,85 @@
-import = [
-  "/usr/lib/node_modules/alacritty-themes/themes/User 77 - Mashup colors.toml"
-]
+[general]
+import = [ "/home/eternal0000ff/.config/alacritty/cyberdream.toml" ]
+# import = [ "/home/eternal0000ff/.config/alacritty/themes/Gruvbox-Dark.toml" ]
+# import = [ "/home/eternal0000ff/.config/alacritty/themes/Gotham.toml" ]
 live_config_reload = true
 
+# import = [ "/home/eternal0000ff/Source/first-party/alacritty-dftp/themes/Gruvbox-Dark.toml" ]
+[window]
+# dynamic_padding = true
+# dynamic_padding = true
+opacity = 0.88
+  # [window.padding]
+  # x = 5
+  # y = 5
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" } 
+vi_mode_style = { shape = "Underline", blinking = "Always" }
+blink_interval = 100
+# thickness = 0.1
+
+
+[[hints.enabled]]
+command = "xdg-open" # On Linux/BSD
+# command = "open" # On macOS
+# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+
+[terminal]
+shell = "fish"
+
+[mouse]
+hide_when_typing = true
+
 [font]
-size = 18
-builtin_box_drawing = true
-
-  [font.bold]
-  family = "Fira Code Nerd Font Mono"
-  # family = "FantasqueSansM Nerd Font"
-  style = "Bold"
-
-  [font.italic]
-  family = "Fira Code Nerd Font Mono"
-  style = "Italic"
+  size = 18
+  glyph_offset = { x =  0, y  = 0 }
+  offset = { x =  -2, y  = 0 }
+  builtin_box_drawing = true
 
   [font.normal]
-  family = "Fira Code Nerd Font Mono"
-  style = "SemiLight"
+  # family = "BigBlueTerminal Nerd Font Mono"
+  # family = "Gohu Nerd Font Mono"
+  # family = "Hermit Nerd Font Mono"
+  # family = "ProggyClean Nerd Font Mono"
+  # family = "Iosevka Nerd Font"
+  # family = "FiraMono Nerd Font"
+  family = "Fira Code Nerd Font"
+  # family = "Hasklug Nerd Font Mono"
+  # family = "CaskaydiaCove Nerd Font Mono"
+  # family = "Monolisa Nerd Font"
+  # family = "JetbrainsMono Nerd Font"
+  style = "Normal"
 
-[[keyboard.bindings]]
-action = "ToggleFullscreen"
-key = "F11"
+  [font.italic]
+  # family = "Iosevka Nerd Font"
+  # family = "Terminus"
+  #  family = "Monolisa Nerd Font"
+  # family = "ProggyClean Nerd Font Mono"
+  family = "Fira Code Nerd Font"
+  # family = "JetbrainsMono Nerd Font"
+  style = "Italic"
+
+  [font.bold]
+  # family = "Iosevka Nerd Font"
+  # family = "ProggyClean Nerd Font Mono"
+  #  family = "Monolisa Nerd Font"
+  family = "Fira Code Nerd Font"
+  # family = "Terminus"
+  # family = "JetbrainsMono Nerd Font"
+  style = "Bold"
 
 [scrolling]
 history = 50_000
 multiplier = 3
 
-[window]
-dynamic_padding = false
-opacity = 0.95
