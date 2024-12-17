@@ -23,6 +23,7 @@ set $mod Mod4
 
 #!/bin/sh
 exec --no-startup-id  xrandr --output DP-0 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-0 --mode 1920x1200 --pos 4480x400 --rotate normal --output DP-4 --primary --mode 2560x1600 --pos 1920x0 --rotate normal --output DP-5 --off --output eDP-1-1 --mode 1920x1080 --pos 0x520 --rotate normal
+exec_always --no-startup-id xset r rate 250 70
 
 set $firstMonitor eDP-1-1
 set $secondMonitor DP-4
@@ -86,18 +87,51 @@ bindsym $mod+Ctrl+$down resize shrink height 1 px or 1 ppt
 bindsym $mod+Ctrl+$left resize grow width 1 px or 1 ppt
 
 # Window color config:  Class / Border / Background / Text / Indicator
-client.focused          #6790eb #6790eb #e5e5e5 #6790eb
+# client.focused          #6790eb #6790eb #e5e5e5 #6790eb  # Blue
+
+
+# 5 Color Class System
+# colorclass border background text indicator child_border
+
+# Class                 Border  Backgr  Text    Indic
+# client.focused          #7a9ba4 #7a9ba4 #688b9c #688b9c
+# client.unfocused        #1c282e #1c282e #bfb0ac #1c282e 
+# client.focused_inactive #1c282e #1c282e #bfb0ac #1c282e 
+# client.placeholder      #1c282e #1c282e #bfb0ac #1c282e 
+# client.urgent           #d42121 #d42121 #f7f7f7 #d42121 
+# client.background       #242424
+
+# 99d1ce
+# class                 border  backgr. text    indicator
+# client.focused          #688b9c #1c282e #5eb0eb #688b9c #688b9c 
+# client.focused_inactive #333333 #5f676a #ffffff #5c7d86 #5c7d86 
+# client.unfocused        #333333 #222222 #888888 #5c7d86 #5c7d86
+# client.urgent           #2f343a #900000 #ffffff #900000 #5c7d86 
+
+
+# Mirage #1c282e
+# Silk   #bfb0ac
+# Gumbo  #7a9ba4
+# Hoki   #688b9c
+# ac8445 
+# Gruvbox Colors        //              Text
+client.focused          #ffbe48 #333333 #ddc7a1 #ac8445 #ffbe48
 client.unfocused        #222222 #222222 #aaaaaa #222222
-client.focused_inactive #222222 #222222 #a9a9a9 #222222
+client.focused_inactive #222222 #222222 #aaaaaa #222222
 client.placeholder      #222222 #222222 #aaaaaa #222222
 client.urgent           #d42121 #d42121 #f7f7f7 #d42121
 client.background       #242424
+
+# Reduce brightness colors by 80%
+# print(hex(int((80*0xd8)/100)))
+# print(hex(int((80*0xa6)/100)))
+# print(hex(int((80*0x57)/100)))
 
 # Border control.
 hide_edge_borders both
 bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
 bindsym $mod+t border normal
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 2
 bindsym $mod+u border none
 
 # Default border for new tiling/floating windows.
@@ -108,8 +142,8 @@ popup_during_fullscreen smart
 
 # Default gap settings for windows.
 for_window [class="^.*"] border pixel 2
-gaps inner 5
-gaps outer 5
+gaps inner 7
+gaps outer 3
 
 # Window gap control mode. 
 set $mode_gaps Gaps: [O]uter, [I]nner
@@ -230,14 +264,45 @@ bar {
   workspace_buttons yes
 
   colors {
-    background #0E0E0E
-    statusline #eeeeee
-    separator  #666666
+    # Blue
+    # background #121e24
+    # statusline #bfb0ac
+    # separator  #bfb0ac
 
-    focused_workspace     #a9a9a9 #5f676a #eeeeee
-    active_workspace      #a9a9a9 #5f676a #eeeeee
-    inactive_workspace    #a9a9a9 #222222 #a9a9a9
-    urgent_workspace      #a9a9a9 #d42121 #FFFFFF
+    # Keyword        xxx ctermfg=167 guifg=#ea6962
+    # Comment        xxx cterm=italic ctermfg=245 gui=italic guifg=#928374
+
+    # Gruvbox Colors
+    background #222222
+    statusline #ddc7a1
+    separator  #928374
+    # d8a657
+    # client.focused          #ac8445 #333333 #ddc7a1 #ac8445 #ac8445
+    # client.unfocused        #222222 #222222 #aaaaaa #222222
+    # client.focused_inactive #222222 #222222 #aaaaaa #222222
+    # client.placeholder      #222222 #222222 #aaaaaa #222222
+    # client.urgent           #d42121 #d42121 #f7f7f7 #d42121
+    # client.background       #242424
+
+#   Color Brightness Reducer for QPE
+# --------------------------------------------
+#   (h := hex(0xFFFFFF), p := 50, (
+#      r := int((p*int(h[2:4],16))/100),
+#      g := int((p*int(h[4:6],16))/100), 
+#      b := int((p*int(h[6:8],16))/100)
+#   ), f"{r:02x}{g:02x}{b:02x}")
+# --------------------------------------------
+
+# (h := hex( 0xac8445 ), p := 50, (
+#    r := int((p*int(h[2:4],16))/100),
+#    g := int((p*int(h[4:6],16))/100), 
+#    b := int((p*int(h[6:8],16))/100)
+# ), f"{r:02x}{g:02x}{b:02x}")
+    #                     border  bg      fg    
+    focused_workspace     #d8a657 #d8a657 #ffffff
+    active_workspace      #ac8445 #303030 #928374
+    inactive_workspace    #ac8445 #303030 #928374
+    urgent_workspace      #fa6962 #ea6962 #ddc7a1
   }
 }
 
@@ -247,22 +312,27 @@ bar {
 
 # Rofi with i3 defaults.
 bindsym $mod+d exec --no-startup-id rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/i3-default.rasi
+bindsym $mod+Shift+d exec --no-startup-id discord; focus
+bindsym $mod+period exec --no-startup-id rofi -show emoji
 bindsym $mod+semicolon exec --no-startup-id dmenu_run -i -p '$ ' -fn 'Noto Sans:pixelsize=18'; focus
 bindsym $mod+Return exec --no-startup-id alacritty; focus
 bindsym $mod+KP_Enter exec --no-startup-id alacritty; focus
 bindsym $mod+Control+Return exec --no-startup-id xfce4-terminal;  focus
-bindsym $mod+Shift+s exec --no-startup-id pavucontrol
-bindsym $mod+Shift+p exec --no-startup-id pamac-manager
+bindsym $mod+Shift+s exec --no-startup-id steam-runtime; focus;
+bindsym $mod+Shift+v exec --no-startup-id pavucontrol; focus;
+# bindsym $mod+Shift+p exec --no-startup-id pamac-manager
 bindsym $mod+Shift+f exec --no-startup-id firefox-developer-edition; focus
+bindsym $mod+Shift+g exec --no-startup-id krita; focus
 bindsym $mod+Shift+Return exec --no-startup-id thunar;focus
 bindsym $mod+Shift+KP_Enter exec --no-startup-id thunar;focus
 bindsym $mod+Print exec --no-startup-id ksnip --rectarea
-bindsym Print exec --no-startup-id ksnip --current
+bindsym Print exec --no-startup-id ksnipclip
+bindsym $mod+Shift+Control+Print exec --no-startup-id ksnip --current
+bindsym $mod+Shift+Print exec --no-startup-id ksnip --active
 bindsym --release $mod+Escape exec xkill
 bindsym $mod+Control+Delete exec --no-startup-id xfce4-taskmanager;focus
 bindsym $mod+Control+Home exec --no-startup-id archlinux-logout
-# bindsym control+mod1+w exec --no-startup-id arcolinux-welcome-app
-# bindsym $mod+control+e exec --no-startup-id archlinux-tweak-tool
+
 
 
 
@@ -303,7 +373,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# ArcoLinux Logout
 bindsym $mod+Shift+e exec --no-startup-id archlinux-logout
 bindsym $mod+X exec --no-startup-id archlinux-logout
 
@@ -320,9 +389,9 @@ exec_always --no-startup-id autotiling
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id pamac-tray
+# exec --no-startup-id pamac-tray
 exec_always --no-startup-id numlockx on
-exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id nitrogen --restore
 
 # Not installed.
 # exec --no-startup-id xfce4-power-manager &
@@ -332,45 +401,36 @@ exec --no-startup-id nitrogen --restore
 # WINDOW / APPLICATION SPECIFIC TILING SETTINGS
 # =============================================================================
 
-for_window [class="Thunar"]                            focus 
 for_window [class="Alacritty"]                         focus
-for_window [class="Arcolinux-welcome-app.py"]          floating enable
 for_window [class="Archlinux-tweak-tool.py"]           floating enable
-for_window [class="Arcolinux-calamares-tool.py"]       floating enable
-for_window [class="Bleachbit"]                         floating disable
 for_window [class="Blueberry.py"]                      floating enable
-for_window [class="Brasero"]                           floating disable
-for_window [class="Galculator"]                        floating enable
-for_window [class="Gnome-disks"]                       floating disable
-for_window [class="^Gnome-font-viewer$"]               floating enable
-for_window [class="^Gpick$"]                           floating enable
+for_window [class="Font-manager"]                      floating enable
 for_window [class="Hexchat"]                           floating disable
 for_window [class="Imagewriter"]                       floating enable
-for_window [class="Font-manager"]                      floating enable
-for_window [class="qt5ct|Lxappearance"]                floating enable
 for_window [class="Nitrogen"]                          floating disable
 for_window [class="Pavucontrol"]                       floating disable
 for_window [class="Peek"]                              floating enable
-for_window [class="^Skype$"]                           floating enable
-for_window [class="^Spotify$"]                         floating disable
 for_window [class="System-config-printer.py"]          floating enable
+for_window [class="Thunar"]                            focus 
 for_window [class="Unetbootin.elf"]                    floating enable
 for_window [class="Usb-creator-gtk"]                   floating enable
-for_window [class="^Vlc$"]                             floating disable
 for_window [class="Wine"]                              floating disable
 for_window [class="Xfburn"]                            floating disable
 for_window [class="Xfce4-appfinder"]                   floating enable
 for_window [class="Xfce4-settings-manager"]            floating disable
 for_window [class="Xfce4-taskmanager"]                 floating enable
+for_window [class="^Gnome-font-viewer$"]               floating enable
+for_window [class="^Gpick$"]                           floating enable
+for_window [class="^Vlc$"]                             floating disable
+for_window [class="qt5ct|Lxappearance"]                floating enable
 for_window [instance="gimp"]                           floating disable
-for_window [instance="variety"]                        floating disable
 for_window [instance="script-fu"]                      border   normal
+for_window [instance="variety"]                        floating disable
 for_window [title="Copying"]                           floating enable
 for_window [title="Deleting"]                          floating enable
 for_window [title="Moving"]                            floating enable
-for_window [title="^Terminator Preferences$"]          floating enable
+for_window [window_role="^Preferences$"]               floating enable
 for_window [window_role="^gimp-toolbox-color-dialog$"] floating enable
 for_window [window_role="pop-up"]                      floating enable
-for_window [window_role="^Preferences$"]               floating enable
 for_window [window_role="setup"]                       floating enable
 for_window [window_type="Notification"]                floating enable
